@@ -1,10 +1,19 @@
 import React from "react";
+import Board from "./Board";
 
 class Game extends React.Component {
 
     render() {
         return (
-            <div></div>
+            <div className="game">
+                <div className="game-board">
+                    <Board/>
+                </div>
+                <div className="game-info">
+                    <div>{ /* Status */ }</div>
+                    <div>{ /*TODO*/ }</div>
+                </div>
+            </div>
         )
     }
 }
