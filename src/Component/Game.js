@@ -14,7 +14,7 @@ class Game extends React.Component {
     }
 
     handleClick(i) {
-        const history = this.state.history.slice(this.state.stepNumber + 1);
+        const history = this.state.history.slice(0, this.state.stepNumber + 1);
         const current = history[history.length -1];
         const squares = current?.squares?.splice();
 
@@ -39,7 +39,7 @@ class Game extends React.Component {
     }
 
     render() {
-        const { history } = this.state;
+        const history = this.state.history;
         const current = history[this.state.stepNumber];
         const winner = CalculateWinner(current.squares);
 
@@ -64,7 +64,7 @@ class Game extends React.Component {
                 <div className="game-board">
                     <Board 
                         squares = {current.squares}
-                        onClick = {(i) => this.handleClick(i)}/>
+                        onClick = {i => this.handleClick(i)}/>
                 </div>
                 <div className="game-info">
                     <div>{ status }</div>
@@ -90,7 +90,7 @@ function CalculateWinner(squares) {
 
     for(let i = 0; i < line.length; i++){
         const [a, b, c] = line[i];
-        if(squares && squares[a] && squares[a] === squares[b] && squares[a] === squares[c]){
+        if(squares[a] && squares[a] === squares[b] && squares[a] === squares[c]){
             return squares[a];
         }
     }
